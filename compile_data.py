@@ -43,7 +43,10 @@ for fn in no_wash_files:
 
 data = pd.DataFrame(stats)
 
-balanced_data = data.groupby("Activity").sample(n=24, random_state=1)
+_, counts = list(np.unique(data['Activity'], return_counts=True))
+samples = min(counts)
+
+balanced_data = data.groupby("Activity").sample(n=samples, random_state=1)
 
 data.to_csv(filename, index=False)
 balanced_data.to_csv('balanced_' + filename, index=False)
