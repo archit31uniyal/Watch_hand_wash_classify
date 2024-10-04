@@ -25,7 +25,7 @@ for fn in wash_files:
             stats['std_z'].append(np.std(temp['z'][(i-1)*1000:i*1000]))
             stats['Activity'].append('hand_wash')
 
-print(no_wash_files)
+
 for fn in no_wash_files:
     temp = pd.read_csv(os.path.join('./raw_data/',fn), names=['timestamp', 'x', 'y', 'z'])
     if len(temp) > 1000:
@@ -41,7 +41,9 @@ for fn in no_wash_files:
             stats['std_z'].append(np.std(temp['z'][(i-1)*1000:i*1000]))
             stats['Activity'].append('not_hand_wash')
 
-print(stats['mean_x'])
 data = pd.DataFrame(stats)
 
+balanced_data = data.groupby("Activity").sample(n=24, random_state=1)
+
 data.to_csv(filename, index=False)
+balanced_data.to_csv('balanced_' + filename, index=False)
