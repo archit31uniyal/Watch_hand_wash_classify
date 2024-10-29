@@ -1,0 +1,14 @@
+configurable-objects==0.0.1
+JPype1==1.5.0
+liac-arff==2.5.0
+numpy==1.26.4
+packaging==24.1
+pandas==2.2.3
+python-dateutil==2.9.0.post0
+python-javabridge==4.0.4
+python-weka-wrapper3==0.3.2
+pytz==2024.2
+simple-data-flow==0.0.1
+simple-range==0.0.3
+six==1.16.0
+tzdata==2024.2
