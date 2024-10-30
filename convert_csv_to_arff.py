@@ -80,7 +80,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Hand wash classification using Weka')
     parser.add_argument('--csv_path', type=str, help='Path to the CSV file', default=csv_file)
     parser.add_argument('--arff_path', type=str, help='Path to the ARFF file', default=arff_file)
-    parser.add_argument('--stride', type=int, help='Stride value', default=1)
     parser.add_argument('--window_size', type=int, help='Window size', default=1000)
     args = parser.parse_args()
 
@@ -90,9 +89,9 @@ if __name__ == '__main__':
 
 
     weka_obj = MyWekaUtils(args)
-    generate_data(args.stride, args.window_size)
-    args.csv_path = f'features_stride_{args.stride}_window_size_{args.window_size}.csv'
-    args.arff_path = f'./arff_data/features_stride_{args.stride}_window_size_{args.window_size}.arff'
+    generate_data(args.window_size)
+    args.csv_path = f'features_window_size_{args.window_size}.csv'
+    args.arff_path = f'./arff_data/features_window_size_{args.window_size}.arff'
 
     df = weka_obj.read_csv()
     weka_obj.csv_to_arff(class_column='Activity')
