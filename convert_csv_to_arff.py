@@ -7,6 +7,8 @@ import tempfile
 import os
 from compile_data import *
 import argparse
+from itertools import combinations
+from math import ceil, log2
 
 # Read CSV file
 csv_file = '/Users/archit/Documents/Watch_hand_wash_classify/balanced_features.csv'
@@ -74,13 +76,15 @@ class MyWekaUtils:
         # Save Instances as ARFF to a temporary file
         save_any_file(instances, args.arff_path)
         print(f"ARFF file '{args.arff_path}' created successfully.")
-
+        
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Hand wash classification using Weka')
     parser.add_argument('--csv_path', type=str, help='Path to the CSV file', default=csv_file)
     parser.add_argument('--arff_path', type=str, help='Path to the ARFF file', default=arff_file)
     parser.add_argument('--window_size', type=int, help='Window size', default=1000)
+    parser.add_argument('--add_extra_cols', action='store_true', help='Add extra columns to the data')
+    parser.add_argument('--feature_selector', action='store_true', help='Use feature selection')
     args = parser.parse_args()
 
     # Start the JVM
@@ -89,9 +93,13 @@ if __name__ == '__main__':
 
 
     weka_obj = MyWekaUtils(args)
-    generate_data(args.window_size)
-    args.csv_path = f'features_window_size_{args.window_size}.csv'
-    args.arff_path = f'./arff_data/features_window_size_{args.window_size}.arff'
+    if not args.feature_selector:
+        generate_data(args.window_size, args.add_extra_cols)
+    else:
+        args.add_extra_cols = True
+    
+    args.csv_path = f'features_window_size_{args.window_size}_extra_cols_{args.add_extra_cols}.csv'
+    args.arff_path = f'./arff_data/features_window_size_{args.window_size}_extra_cols_{args.add_extra_cols}.arff'
 
     df = weka_obj.read_csv()
     weka_obj.csv_to_arff(class_column='Activity')

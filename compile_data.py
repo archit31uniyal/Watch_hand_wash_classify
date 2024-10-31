@@ -3,8 +3,8 @@ import numpy as np
 import os
 from collections import defaultdict
 
-def generate_data(window_size = 1000):
-    filename = f'features_window_size_{window_size}.csv'
+def generate_data(window_size = 1000, add_extra_cols = False):
+    filename = f'features_window_size_{window_size}_extra_cols_{add_extra_cols}.csv'
 
     # Read in the data
     wash_files = [fn for fn in os.listdir('./raw_data') if 'nonwash' not in fn]
@@ -25,6 +25,13 @@ def generate_data(window_size = 1000):
                 stats['std_y'].append(np.std(temp['y'][i: i+window_size]))
                 stats['mean_z'].append(np.mean(temp['z'][i: i+window_size]))
                 stats['std_z'].append(np.std(temp['z'][i: i+window_size]))
+                if add_extra_cols:
+                    stats['median_x'].append(np.median(temp['x'][i: i+window_size]))
+                    stats['median_y'].append(np.median(temp['y'][i: i+window_size]))
+                    stats['median_z'].append(np.median(temp['z'][i: i+window_size]))
+                    stats['rms_x'].append(np.sqrt(np.mean(temp['x'][i: i+window_size]**2)))
+                    stats['rms_y'].append(np.sqrt(np.mean(temp['y'][i: i+window_size]**2)))
+                    stats['rms_z'].append(np.sqrt(np.mean(temp['z'][i: i+window_size]**2)))
                 stats['Activity'].append('hand_wash')
 
 
@@ -41,6 +48,13 @@ def generate_data(window_size = 1000):
                 stats['mean_z'].append(np.mean(temp['z'][i: i+window_size]))
                 stats['std_z'].append(np.std(temp['z'][i: i+window_size]))
                 stats['Activity'].append('not_hand_wash')
+                if add_extra_cols:
+                    stats['median_x'].append(np.median(temp['x'][i: i+window_size]))
+                    stats['median_y'].append(np.median(temp['y'][i: i+window_size]))
+                    stats['median_z'].append(np.median(temp['z'][i: i+window_size]))
+                    stats['rms_x'].append(np.sqrt(np.mean(temp['x'][i: i+window_size]**2)))
+                    stats['rms_y'].append(np.sqrt(np.mean(temp['y'][i: i+window_size]**2)))
+                    stats['rms_z'].append(np.sqrt(np.mean(temp['z'][i: i+window_size]**2)))
 
     data = pd.DataFrame(stats)
 
@@ -52,5 +66,5 @@ def generate_data(window_size = 1000):
     data.to_csv(filename, index=False)
     balanced_data.to_csv('balanced_' + filename, index=False)
 
-generate_data(window_size=3000)
+generate_data(window_size=3000, add_extra_cols=True)
 print("Data generated successfully!")

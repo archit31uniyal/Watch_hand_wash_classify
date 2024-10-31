@@ -1,4 +1,4 @@
-@relation features_window_size_1000
+@relation features_window_size_1000_extra_cols_False
 
 @attribute mean_x numeric
 @attribute std_x numeric
