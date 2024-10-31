@@ -13,31 +13,33 @@ def generate_data(window_size = 1000):
     stats = defaultdict(list)
     for fn in wash_files:
         temp = pd.read_csv(os.path.join('./raw_data/', fn), names=['timestamp', 'x', 'y', 'z'])
-        if len(temp)> window_size:
+        if len(temp) > window_size:
             # extra_entries = len(temp) % window_size
             # temp = temp[:-extra_entries]
-            n = len(temp) - window_size   
-            for i in range(1, n):
-                stats['mean_x'].append(np.mean(temp['x'][(i-1)*1000: i+window_size]))
-                stats['std_x'].append(np.std(temp['x'][(i-1)*1000: i+window_size]))
-                stats['mean_y'].append(np.mean(temp['y'][(i-1)*1000: i+window_size]))
-                stats['std_y'].append(np.std(temp['y'][(i-1)*1000: i+window_size]))
-                stats['mean_z'].append(np.mean(temp['z'][(i-1)*1000:  i+window_size]))
-                stats['std_z'].append(np.std(temp['z'][(i-1)*1000: i+window_size]))
+            for i in range(0, len(temp), 1000):
+                if i + window_size > len(temp):
+                    break
+                stats['mean_x'].append(np.mean(temp['x'][i: i+window_size]))
+                stats['std_x'].append(np.std(temp['x'][i: i+window_size]))
+                stats['mean_y'].append(np.mean(temp['y'][i: i+window_size]))
+                stats['std_y'].append(np.std(temp['y'][i: i+window_size]))
+                stats['mean_z'].append(np.mean(temp['z'][i: i+window_size]))
+                stats['std_z'].append(np.std(temp['z'][i: i+window_size]))
                 stats['Activity'].append('hand_wash')
 
 
     for fn in no_wash_files:
         temp = pd.read_csv(os.path.join('./raw_data/',fn), names=['timestamp', 'x', 'y', 'z'])
         if len(temp) > window_size:
-            n = len(temp) - window_size 
-            for i in range(1, n):
-                stats['mean_x'].append(np.mean(temp['x'][(i-1)*1000: i+window_size]))
-                stats['std_x'].append(np.std(temp['x'][(i-1)*1000: i+window_size]))
-                stats['mean_y'].append(np.mean(temp['y'][(i-1)*1000: i+window_size]))
-                stats['std_y'].append(np.std(temp['y'][(i-1)*1000: i+window_size]))
-                stats['mean_z'].append(np.mean(temp['z'][(i-1)*1000: i+window_size]))
-                stats['std_z'].append(np.std(temp['z'][(i-1)*1000: i+window_size]))
+            for i in range(0, len(temp), 1000):
+                if i + window_size > len(temp):
+                    break
+                stats['mean_x'].append(np.mean(temp['x'][i: i+window_size]))
+                stats['std_x'].append(np.std(temp['x'][i: i+window_size]))
+                stats['mean_y'].append(np.mean(temp['y'][i: i+window_size]))
+                stats['std_y'].append(np.std(temp['y'][i: i+window_size]))
+                stats['mean_z'].append(np.mean(temp['z'][i: i+window_size]))
+                stats['std_z'].append(np.std(temp['z'][i: i+window_size]))
                 stats['Activity'].append('not_hand_wash')
 
     data = pd.DataFrame(stats)
@@ -49,3 +51,6 @@ def generate_data(window_size = 1000):
 
     data.to_csv(filename, index=False)
     balanced_data.to_csv('balanced_' + filename, index=False)
+
+generate_data(window_size=3000)
+print("Data generated successfully!")
