@@ -1,0 +1,5 @@
+window_size,extra_cols,classifier,accuracy
+1000,True,XGBoost,84.54545454545455
+2000,True,XGBoost,89.81481481481481
+3000,True,XGBoost,91.50943396226415
+4000,True,XGBoost,95.1923076923077

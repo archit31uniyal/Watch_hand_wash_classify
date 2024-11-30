@@ -1,0 +1,5 @@
+window_size,extra_cols,classifier,accuracy
+1000,True,Random_Forest,84.54545454545455
+2000,True,Random_Forest,93.51851851851852
+3000,True,Random_Forest,91.50943396226415
+4000,True,Random_Forest,93.26923076923077

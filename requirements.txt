@@ -1,4 +1,5 @@
 configurable-objects==0.0.1
+joblib==1.4.2
 JPype1==1.5.0
 liac-arff==2.5.0
 numpy==1.26.4
@@ -8,7 +9,11 @@ python-dateutil==2.9.0.post0
 python-javabridge==4.0.4
 python-weka-wrapper3==0.3.2
 pytz==2024.2
+scikit-learn==1.5.2
+scipy==1.14.1
 simple-data-flow==0.0.1
 simple-range==0.0.3
 six==1.16.0
+threadpoolctl==3.5.0
 tzdata==2024.2
+xgboost==2.1.3

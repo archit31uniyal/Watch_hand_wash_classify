@@ -2,6 +2,11 @@ import weka.core.jvm as jvm
 from weka.core.converters import load_any_file, save_any_file
 from weka.core.classes import Random
 from weka.classifiers import Classifier, Evaluation
+from sklearn.base import clone
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import StratifiedKFold, cross_validate
+
+import xgboost as xgb
 import pandas as pd
 import tempfile
 import os
@@ -85,6 +90,7 @@ if __name__ == '__main__':
     parser.add_argument('--window_size', type=int, help='Window size', default=1000)
     parser.add_argument('--add_extra_cols', action='store_true', help='Add extra columns to the data')
     parser.add_argument('--feature_selector', action='store_true', help='Use feature selection')
+    parser.add_argument('--classifier', type=int, help='Classifier option: 1 - Decision Tree, 2 - Random Forest, 3 - SVM', default=1)
     args = parser.parse_args()
 
     # Start the JVM
@@ -98,12 +104,12 @@ if __name__ == '__main__':
     else:
         args.add_extra_cols = True
     
-    args.csv_path = f'features_window_size_{args.window_size}_extra_cols_{args.add_extra_cols}.csv'
-    args.arff_path = f'./arff_data/features_window_size_{args.window_size}_extra_cols_{args.add_extra_cols}.arff'
+    args.csv_path = f'features_window_size_{args.window_size}_extra_cols_{args.add_extra_cols}_walk.csv'
+    args.arff_path = f'./arff_data/features_window_size_{args.window_size}_extra_cols_{args.add_extra_cols}_walk.arff'
 
     df = weka_obj.read_csv()
     weka_obj.csv_to_arff(class_column='Activity')
-    accuracy = weka_obj.classify(option= 1)
+    accuracy = weka_obj.classify(option= args.classifier)
     print(f"Accuracy: {accuracy:.2f}%")
 
     jvm.stop()
