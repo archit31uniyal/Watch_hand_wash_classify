@@ -32,7 +32,7 @@ def generate_data(window_size = 1000, add_extra_cols = False):
                     stats['rms_x'].append(np.sqrt(np.mean(temp['x'][i: i+window_size]**2)))
                     stats['rms_y'].append(np.sqrt(np.mean(temp['y'][i: i+window_size]**2)))
                     stats['rms_z'].append(np.sqrt(np.mean(temp['z'][i: i+window_size]**2)))
-                stats['Activity'].append('outdoor walk')
+                stats['Activity'].append(1)
 
 
     for fn in indoor_walk_files:
@@ -47,7 +47,7 @@ def generate_data(window_size = 1000, add_extra_cols = False):
                 stats['std_y'].append(np.std(temp['y'][i: i+window_size]))
                 stats['mean_z'].append(np.mean(temp['z'][i: i+window_size]))
                 stats['std_z'].append(np.std(temp['z'][i: i+window_size]))
-                stats['Activity'].append('indoor walk')
+                stats['Activity'].append(0)
                 if add_extra_cols:
                     stats['median_x'].append(np.median(temp['x'][i: i+window_size]))
                     stats['median_y'].append(np.median(temp['y'][i: i+window_size]))

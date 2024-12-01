@@ -6,6 +6,7 @@ import pandas as pd
 
 from compile_data import *
 import argparse
+from tqdm import tqdm
 
 # Read CSV file
 csv_file = '/Users/archit/Documents/Watch_hand_wash_classify/balanced_features.csv'
@@ -29,7 +30,7 @@ def get_data(args, col_list: list[str]):
     y = df.iloc[:, -1]
     X = df[col_list] # Drop columns that are not in col_list (used in feature selection)
     # X, y = df.iloc[:, :-1], df.iloc[:, -1]
-    y = y.map({'indoor walk': 0, 'outdoor walk': 1})
+    # y = y.map({'indoor walk': 0, 'outdoor walk': 1})
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
 
@@ -97,8 +98,12 @@ def feature_select(args, baseline: float, current_col_list: list[str], remaining
     best_cols = []
 
     does_improve = False
+    try:
+        remaining_col_list.remove("Activity")
+    except:
+        pass
 
-    for col in remaining_col_list:
+    for col in tqdm(remaining_col_list, desc='Feature selection'):
         temp_accuracy = classify(args, current_col_list+[col])
         if does_improve is False and temp_accuracy > baseline+improvement_threshold: # Rule 1
             max_accuracy = temp_accuracy
