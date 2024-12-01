@@ -8,6 +8,8 @@ from compile_data import *
 import argparse
 from tqdm import tqdm
 
+import csv
+
 # Read CSV file
 csv_file = '/Users/archit/Documents/Watch_hand_wash_classify/balanced_features.csv'
 
@@ -87,7 +89,7 @@ def classify(args, col_list: list[str]) -> float:
     else:
         return -1
 
-def feature_select(args, baseline: float, current_col_list: list[str], remaining_col_list: list[str]) -> float:
+def feature_select(args, writer, baseline: float, current_col_list: list[str], remaining_col_list: list[str]) -> float:
     # Rule:
     # 1. Adding new column level should increase the accuracy by at least improvement_threshold
     # 2. Changing the same column level is allowed is the accuracy is better
@@ -104,7 +106,9 @@ def feature_select(args, baseline: float, current_col_list: list[str], remaining
         pass
 
     for col in tqdm(remaining_col_list, desc='Feature selection'):
-        temp_accuracy = classify(args, current_col_list+[col])
+        temp_col = current_col_list + [col]
+        temp_accuracy = classify(args, temp_col)
+        writer.writerow({"accuracy": temp_accuracy, "cols": ' '.join(temp_col)})
         if does_improve is False and temp_accuracy > baseline+improvement_threshold: # Rule 1
             max_accuracy = temp_accuracy
             best_cols.append(col)
@@ -134,7 +138,7 @@ def feature_select(args, baseline: float, current_col_list: list[str], remaining
             temp_remaining_col_list.remove(col)
 
             if len(temp_remaining_col_list)>0:
-                recursive_accuracy = feature_select(args, max_accuracy, temp_current_col_list, temp_remaining_col_list)
+                recursive_accuracy = feature_select(args, writer, max_accuracy, temp_current_col_list, temp_remaining_col_list)
                 if does_improve_recursive is False and recursive_accuracy > max_accuracy+improvement_threshold: # Rule 1
                     final_accuracy = recursive_accuracy
                     final_col_list = temp_current_col_list.copy()
@@ -159,6 +163,13 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     df = pd.DataFrame(columns = ['window_size', 'extra_cols', 'classifier', 'accuracy'])
+
+    classifier = 'Random_Forest' if args.classifier == 1 else 'XGBoost'
+
+    csv_field_names = ["accuracy", "cols"]
+    csv_file = open(f"result_{args.feature_selector}_{classifier}.csv", "w", newline="")
+    writer = csv.DictWriter(csv_file, csv_field_names)
+    writer.writeheader()
     
     if not args.window_size:
         for window_size in [1000, 2000, 3000, 4000, 6000, 10000]:
@@ -174,9 +185,9 @@ if __name__ == '__main__':
             if df is None:
                 quit(1)
             col_list = df.columns.values.tolist()
-            accuracy = feature_select(args, 0.0, [], col_list)
+            accuracy = feature_select(args, writer, 0.0, [], col_list)
 
-            classifier = 'Random_Forest' if args.classifier == 1 else 'XGBoost'
+            
             df_ = pd.DataFrame(data={"window_size": args.window_size, "extra_cols": args.add_extra_cols, "classifier": classifier, "accuracy": accuracy}, index=[0])
             print(f"Window size: {args.window_size}, Extra columns: {args.add_extra_cols}, Classifier: {classifier}, Accuracy: {accuracy:.2f}%")
             df = pd.concat([df, df_])
@@ -193,7 +204,8 @@ if __name__ == '__main__':
         if df is None:
             quit(1)
         col_list = df.columns.values.tolist()
-        accuracy = feature_select(args, 0.0, [], col_list)
+        accuracy = feature_select(args, writer, 0.0, [], col_list)
 
-        classifier = 'Random Forest' if args.classifier == 1 else 'XGBoost'
         print(f"Window size: {args.window_size}, Extra columns: {args.add_extra_cols}, Classifier: {classifier}, Accuracy: {accuracy:.2f}%")
+    
+    csv_file.close()
