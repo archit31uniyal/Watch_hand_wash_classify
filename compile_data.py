@@ -66,5 +66,5 @@ def generate_data(window_size = 1000, add_extra_cols = False):
     data.to_csv(filename, index=False)
     balanced_data.to_csv('balanced_' + filename, index=False)
 
-generate_data(window_size=4000, add_extra_cols=True)
-print("Data generated successfully!")
+# generate_data(window_size=2000, add_extra_cols=True)
+# print("Data generated successfully!")

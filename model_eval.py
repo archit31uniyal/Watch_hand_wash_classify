@@ -26,10 +26,9 @@ def get_data(args, col_list: list[str]):
     df = read_csv(args.csv_path)
     if df is None:
         return None
-    
-    df = df[col_list] # Drop columns that are not in col_list (used in feature selection)
-
-    X, y = df.iloc[:, :-1], df.iloc[:, -1]
+    y = df.iloc[:, -1]
+    X = df[col_list] # Drop columns that are not in col_list (used in feature selection)
+    # X, y = df.iloc[:, :-1], df.iloc[:, -1]
     y = y.map({'indoor walk': 0, 'outdoor walk': 1})
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
@@ -153,11 +152,6 @@ if __name__ == '__main__':
     parser.add_argument('--feature_selector', type=bool, help='Use feature selection', default=True)
     parser.add_argument('--classifier', type=int, help='Classifier option: 1 - Random Forest, 2 - XGBoost', default=1)
     args = parser.parse_args()
-    
-    # if not args.feature_selector:
-    #     generate_data(args.window_size, args.add_extra_cols)
-    # else:
-    #     args.add_extra_cols = True
 
     df = pd.DataFrame(columns = ['window_size', 'extra_cols', 'classifier', 'accuracy'])
     
@@ -175,7 +169,7 @@ if __name__ == '__main__':
             if df is None:
                 quit(1)
             col_list = df.columns.values.tolist()
-            accuracy = feature_select(args, 0.0, col_list, [])
+            accuracy = feature_select(args, 0.0, [], col_list)
 
             classifier = 'Random_Forest' if args.classifier == 1 else 'XGBoost'
             df_ = pd.DataFrame(data={"window_size": args.window_size, "extra_cols": args.add_extra_cols, "classifier": classifier, "accuracy": accuracy}, index=[0])
@@ -185,7 +179,7 @@ if __name__ == '__main__':
         df.to_csv(f'results_extra_cols_{args.add_extra_cols}_{classifier}.csv', index=False)
     else:
         generate_data(args.window_size, args.add_extra_cols)
-        
+        args.csv_path = f'features_window_size_{args.window_size}_extra_cols_{args.add_extra_cols}_walk.csv'
         # Without feature selection
         # accuracy = classify(args)
 
@@ -194,7 +188,7 @@ if __name__ == '__main__':
         if df is None:
             quit(1)
         col_list = df.columns.values.tolist()
-        accuracy = feature_select(args, 0.0, col_list, [])
+        accuracy = feature_select(args, 0.0, [], col_list)
 
         classifier = 'Random Forest' if args.classifier == 1 else 'XGBoost'
         print(f"Window size: {args.window_size}, Extra columns: {args.add_extra_cols}, Classifier: {classifier}, Accuracy: {accuracy:.2f}%")
