@@ -22,11 +22,13 @@ def read_csv(filename) -> pd.DataFrame:
     return data
 
 
-def get_data(args):
+def get_data(args, col_list: list[str]):
     df = read_csv(args.csv_path)
     if df is None:
         return None
     
+    df = df[col_list] # Drop columns that are not in col_list (used in feature selection)
+
     X, y = df.iloc[:, :-1], df.iloc[:, -1]
     y = y.map({'indoor walk': 0, 'outdoor walk': 1})
 
@@ -34,8 +36,8 @@ def get_data(args):
 
     return X_train, X_test, y_train, y_test
 
-def classify(args) -> float:
-    X_train, X_test, y_train, y_test = get_data(args)
+def classify(args, col_list: list[str]) -> float:
+    X_train, X_test, y_train, y_test = get_data(args, col_list)
     if X_train is None:
         return -1
 
@@ -84,7 +86,63 @@ def classify(args) -> float:
         return classifier.score(X_test, y_test) * 100
     else:
         return -1
+
+def feature_select(args, baseline: float, current_col_list: list[str], remaining_col_list: list[str]) -> float:
+    # Rule:
+    # 1. Adding new column level should increase the accuracy by at least improvement_threshold
+    # 2. Changing the same column level is allowed is the accuracy is better
+    improvement_threshold = 1.0
+
+    max_accuracy = baseline
+    temp_accuracy = 0.0
+    best_cols = []
+
+    does_improve = False
+
+    for col in remaining_col_list:
+        temp_accuracy = classify(args, current_col_list+[col])
+        if does_improve is False and temp_accuracy > baseline+improvement_threshold: # Rule 1
+            max_accuracy = temp_accuracy
+            best_cols.append(col)
+            does_improve = True
+        
+        if does_improve and temp_accuracy>=max_accuracy: # Rule 2
+            if temp_accuracy > max_accuracy and len(best_cols) > 0:
+                best_cols.clear()
+                max_accuracy = temp_accuracy
+            
+            best_cols.append(col) # if temp_accuracy>=max_accuracy
+        
+    if max_accuracy>baseline+improvement_threshold:
+        print(f"Cols that add accuracy {best_cols}")
+    else:
+        print("No improvement")
     
+    if does_improve:
+        final_col_list = []
+        final_accuracy = max_accuracy
+        does_improve_recursive = False
+        for col in best_cols:
+            temp_current_col_list = current_col_list.copy()
+            temp_remaining_col_list = remaining_col_list.copy()
+
+            temp_current_col_list.append(col)
+            temp_remaining_col_list.remove(col)
+
+            if len(temp_remaining_col_list)>0:
+                recursive_accuracy = feature_select(args, max_accuracy, temp_current_col_list, temp_remaining_col_list)
+                if does_improve_recursive is False and recursive_accuracy > max_accuracy+improvement_threshold: # Rule 1
+                    final_accuracy = recursive_accuracy
+                    final_col_list = temp_current_col_list.copy()
+                    does_improve_recursive = True
+                if does_improve_recursive and recursive_accuracy>final_accuracy: # Rule 2
+                    final_accuracy = recursive_accuracy
+                    final_col_list = temp_current_col_list.copy()
+        
+        if does_improve_recursive:
+            max_accuracy = final_accuracy
+
+    return max_accuracy
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Hand wash classification using Weka')
@@ -92,7 +150,7 @@ if __name__ == '__main__':
     parser.add_argument('--arff_path', type=str, help='Path to the ARFF file', default=arff_file)
     parser.add_argument('--window_size', type=int, help='Window size', default=None)
     parser.add_argument('--add_extra_cols', action='store_true', help='Add extra columns to the data')
-    parser.add_argument('--feature_selector', action='store_true', help='Use feature selection')
+    parser.add_argument('--feature_selector', type=bool, help='Use feature selection', default=True)
     parser.add_argument('--classifier', type=int, help='Classifier option: 1 - Random Forest, 2 - XGBoost', default=1)
     args = parser.parse_args()
     
@@ -108,7 +166,17 @@ if __name__ == '__main__':
             args.window_size = window_size
             generate_data(args.window_size, args.add_extra_cols)
             args.csv_path = f'features_window_size_{args.window_size}_extra_cols_{args.add_extra_cols}_walk.csv'
-            accuracy = classify(args)
+
+            # Without feature selection
+            # accuracy = classify(args)
+
+            # Use feature selection
+            df = read_csv(args.csv_path)
+            if df is None:
+                quit(1)
+            col_list = df.columns.values.tolist()
+            accuracy = feature_select(args, 0.0, col_list, [])
+
             classifier = 'Random_Forest' if args.classifier == 1 else 'XGBoost'
             df_ = pd.DataFrame(data={"window_size": args.window_size, "extra_cols": args.add_extra_cols, "classifier": classifier, "accuracy": accuracy}, index=[0])
             print(f"Window size: {args.window_size}, Extra columns: {args.add_extra_cols}, Classifier: {classifier}, Accuracy: {accuracy:.2f}%")
@@ -117,6 +185,16 @@ if __name__ == '__main__':
         df.to_csv(f'results_extra_cols_{args.add_extra_cols}_{classifier}.csv', index=False)
     else:
         generate_data(args.window_size, args.add_extra_cols)
-        accuracy = classify(args)
+        
+        # Without feature selection
+        # accuracy = classify(args)
+
+        # Use feature selection
+        df = read_csv(args.csv_path)
+        if df is None:
+            quit(1)
+        col_list = df.columns.values.tolist()
+        accuracy = feature_select(args, 0.0, col_list, [])
+
         classifier = 'Random Forest' if args.classifier == 1 else 'XGBoost'
         print(f"Window size: {args.window_size}, Extra columns: {args.add_extra_cols}, Classifier: {classifier}, Accuracy: {accuracy:.2f}%")
