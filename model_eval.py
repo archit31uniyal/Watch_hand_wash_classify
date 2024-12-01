@@ -1,6 +1,4 @@
-from sklearn.base import clone
-from sklearn.datasets import load_breast_cancer
-from sklearn.model_selection import cross_val_score, train_test_split, GridSearchCV
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
 
 import xgboost as xgb
@@ -8,8 +6,7 @@ import pandas as pd
 
 from compile_data import *
 import argparse
-from itertools import combinations
-from math import ceil, log2
+
 # Read CSV file
 csv_file = '/Users/archit/Documents/Watch_hand_wash_classify/balanced_features.csv'
 
@@ -23,6 +20,7 @@ def read_csv(filename) -> pd.DataFrame:
         print("No data found")
         return None
     return data
+
 
 def get_data(args):
     df = read_csv(args.csv_path)
@@ -106,7 +104,7 @@ if __name__ == '__main__':
     df = pd.DataFrame(columns = ['window_size', 'extra_cols', 'classifier', 'accuracy'])
     
     if not args.window_size:
-        for window_size in [1000, 2000, 3000, 4000]:
+        for window_size in [1000, 2000, 3000, 4000, 6000, 10000]:
             args.window_size = window_size
             generate_data(args.window_size, args.add_extra_cols)
             args.csv_path = f'features_window_size_{args.window_size}_extra_cols_{args.add_extra_cols}_walk.csv'
