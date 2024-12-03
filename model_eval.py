@@ -1,5 +1,6 @@
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
 
 import xgboost as xgb
 import pandas as pd
@@ -86,6 +87,20 @@ def classify(args, col_list: list[str]) -> float:
         classifier.fit(X_train, y_train)
 
         return classifier.score(X_test, y_test) * 100
+    elif args.classifier == 3:
+        classifier = DecisionTreeClassifier()
+        param_grid = {
+            'max_depth': [2, 5, 7, 9, 10],
+            'min_samples_split': [2, 5, 10],
+            'min_samples_leaf': [1, 2, 4]
+        }
+
+        grid_search = GridSearchCV(estimator=classifier, param_grid=param_grid, cv=10)
+        grid_search.fit(X_train, y_train)
+        classifier = grid_search.best_estimator_
+        # print("Decision Tree best parameters: ", grid_search.best_params_)
+
+        return classifier.score(X_test, y_test) * 100
     else:
         return -1
 
@@ -108,7 +123,7 @@ def feature_select(args, writer, baseline: float, current_col_list: list[str], r
     for col in tqdm(remaining_col_list, desc='Feature selection'):
         temp_col = current_col_list + [col]
         temp_accuracy = classify(args, temp_col)
-        writer.writerow({"accuracy": f"{temp_accuracy:.2f}", "cols": " ".join(temp_col)})
+        writer.writerow({"accuracy": temp_accuracy, "cols": ' '.join(temp_col)})
         if does_improve is False and temp_accuracy > baseline+improvement_threshold: # Rule 1
             max_accuracy = temp_accuracy
             best_cols.append(col)
@@ -149,6 +164,7 @@ def feature_select(args, writer, baseline: float, current_col_list: list[str], r
         
         if does_improve_recursive:
             max_accuracy = final_accuracy
+            
 
     return max_accuracy
 
@@ -167,13 +183,12 @@ if __name__ == '__main__':
     classifier = 'Random_Forest' if args.classifier == 1 else 'XGBoost'
 
     csv_field_names = ["accuracy", "cols"]
+    csv_file = open(f"result_{args.feature_selector}_{classifier}.csv", "w", newline="")
+    writer = csv.DictWriter(csv_file, csv_field_names)
+    writer.writeheader()
     
     if not args.window_size:
         for window_size in [1000, 2000, 3000, 4000, 6000, 10000]:
-            csv_file = open(f"result_feature_selector_{window_size}_{classifier}.csv", "w", newline="")
-            writer = csv.DictWriter(csv_file, csv_field_names)
-            writer.writeheader()
-
             args.window_size = window_size
             generate_data(args.window_size, args.add_extra_cols)
             args.csv_path = f'features_window_size_{args.window_size}_extra_cols_{args.add_extra_cols}_walk.csv'
@@ -187,7 +202,6 @@ if __name__ == '__main__':
                 quit(1)
             col_list = df.columns.values.tolist()
             accuracy = feature_select(args, writer, 0.0, [], col_list)
-            csv_file.close()
 
             
             df_ = pd.DataFrame(data={"window_size": args.window_size, "extra_cols": args.add_extra_cols, "classifier": classifier, "accuracy": accuracy}, index=[0])
@@ -196,9 +210,6 @@ if __name__ == '__main__':
 
         df.to_csv(f'results_extra_cols_{args.add_extra_cols}_{classifier}.csv', index=False)
     else:
-        csv_file = open(f"result_feature_selector_{classifier}.csv", "w", newline="")
-        writer = csv.DictWriter(csv_file, csv_field_names)
-        writer.writeheader()
         generate_data(args.window_size, args.add_extra_cols)
         args.csv_path = f'features_window_size_{args.window_size}_extra_cols_{args.add_extra_cols}_walk.csv'
         # Without feature selection
@@ -210,6 +221,7 @@ if __name__ == '__main__':
             quit(1)
         col_list = df.columns.values.tolist()
         accuracy = feature_select(args, writer, 0.0, [], col_list)
-        csv_file.close()
 
         print(f"Window size: {args.window_size}, Extra columns: {args.add_extra_cols}, Classifier: {classifier}, Accuracy: {accuracy:.2f}%")
+    
+    csv_file.close()
