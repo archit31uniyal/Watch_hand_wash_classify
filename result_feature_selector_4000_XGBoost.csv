@@ -1,0 +1,167 @@
+accuracy,cols
+54.81,mean_x
+70.19,std_x
+59.62,mean_y
+73.08,std_y
+57.69,mean_z
+66.35,std_z
+67.31,median_x
+65.38,median_y
+72.12,median_z
+62.50,rms_x
+73.08,rms_y
+67.31,rms_z
+77.88,std_y mean_x
+70.19,std_y std_x
+81.73,std_y mean_y
+77.88,std_y mean_z
+75.96,std_y std_z
+80.77,std_y median_x
+80.77,std_y median_y
+83.65,std_y median_z
+84.62,std_y rms_x
+85.58,std_y rms_y
+81.73,std_y rms_z
+86.54,std_y rms_y mean_x
+80.77,std_y rms_y std_x
+80.77,std_y rms_y mean_y
+87.50,std_y rms_y mean_z
+81.73,std_y rms_y std_z
+83.65,std_y rms_y median_x
+83.65,std_y rms_y median_y
+89.42,std_y rms_y median_z
+85.58,std_y rms_y rms_x
+86.54,std_y rms_y rms_z
+92.31,std_y rms_y median_z mean_x
+86.54,std_y rms_y median_z std_x
+88.46,std_y rms_y median_z mean_y
+91.35,std_y rms_y median_z mean_z
+90.38,std_y rms_y median_z std_z
+92.31,std_y rms_y median_z median_x
+91.35,std_y rms_y median_z median_y
+91.35,std_y rms_y median_z rms_x
+93.27,std_y rms_y median_z rms_z
+94.23,std_y rms_y median_z rms_z mean_x
+93.27,std_y rms_y median_z rms_z std_x
+92.31,std_y rms_y median_z rms_z mean_y
+93.27,std_y rms_y median_z rms_z mean_z
+92.31,std_y rms_y median_z rms_z std_z
+93.27,std_y rms_y median_z rms_z median_x
+92.31,std_y rms_y median_z rms_z median_y
+91.35,std_y rms_y median_z rms_z rms_x
+71.15,rms_y mean_x
+68.27,rms_y std_x
+77.88,rms_y mean_y
+84.62,rms_y std_y
+75.00,rms_y mean_z
+72.12,rms_y std_z
+70.19,rms_y median_x
+77.88,rms_y median_y
+79.81,rms_y median_z
+81.73,rms_y rms_x
+73.08,rms_y rms_z
+85.58,rms_y std_y mean_x
+80.77,rms_y std_y std_x
+80.77,rms_y std_y mean_y
+87.50,rms_y std_y mean_z
+83.65,rms_y std_y std_z
+83.65,rms_y std_y median_x
+84.62,rms_y std_y median_y
+89.42,rms_y std_y median_z
+87.50,rms_y std_y rms_x
+86.54,rms_y std_y rms_z
+92.31,rms_y std_y median_z mean_x
+85.58,rms_y std_y median_z std_x
+87.50,rms_y std_y median_z mean_y
+90.38,rms_y std_y median_z mean_z
+92.31,rms_y std_y median_z std_z
+91.35,rms_y std_y median_z median_x
+91.35,rms_y std_y median_z median_y
+91.35,rms_y std_y median_z rms_x
+92.31,rms_y std_y median_z rms_z
+89.42,rms_y std_y median_z mean_x std_x
+89.42,rms_y std_y median_z mean_x mean_y
+94.23,rms_y std_y median_z mean_x mean_z
+94.23,rms_y std_y median_z mean_x std_z
+92.31,rms_y std_y median_z mean_x median_x
+93.27,rms_y std_y median_z mean_x median_y
+90.38,rms_y std_y median_z mean_x rms_x
+95.19,rms_y std_y median_z mean_x rms_z
+91.35,rms_y std_y median_z mean_x rms_z std_x
+90.38,rms_y std_y median_z mean_x rms_z mean_y
+94.23,rms_y std_y median_z mean_x rms_z mean_z
+94.23,rms_y std_y median_z mean_x rms_z std_z
+92.31,rms_y std_y median_z mean_x rms_z median_x
+93.27,rms_y std_y median_z mean_x rms_z median_y
+93.27,rms_y std_y median_z mean_x rms_z rms_x
+89.42,rms_y std_y median_z mean_x std_x
+89.42,rms_y std_y median_z mean_x mean_y
+94.23,rms_y std_y median_z mean_x mean_z
+94.23,rms_y std_y median_z mean_x std_z
+92.31,rms_y std_y median_z mean_x median_x
+93.27,rms_y std_y median_z mean_x median_y
+90.38,rms_y std_y median_z mean_x rms_x
+95.19,rms_y std_y median_z mean_x rms_z
+91.35,rms_y std_y median_z mean_x rms_z std_x
+90.38,rms_y std_y median_z mean_x rms_z mean_y
+94.23,rms_y std_y median_z mean_x rms_z mean_z
+94.23,rms_y std_y median_z mean_x rms_z std_z
+92.31,rms_y std_y median_z mean_x rms_z median_x
+93.27,rms_y std_y median_z mean_x rms_z median_y
+93.27,rms_y std_y median_z mean_x rms_z rms_x
+94.23,rms_y std_y median_z std_z mean_x
+95.19,rms_y std_y median_z std_z std_x
+92.31,rms_y std_y median_z std_z mean_y
+93.27,rms_y std_y median_z std_z mean_z
+95.19,rms_y std_y median_z std_z median_x
+94.23,rms_y std_y median_z std_z median_y
+93.27,rms_y std_y median_z std_z rms_x
+93.27,rms_y std_y median_z std_z rms_z
+93.27,rms_y std_y median_z std_z std_x mean_x
+95.19,rms_y std_y median_z std_z std_x mean_y
+95.19,rms_y std_y median_z std_z std_x mean_z
+93.27,rms_y std_y median_z std_z std_x median_x
+97.12,rms_y std_y median_z std_z std_x median_y
+93.27,rms_y std_y median_z std_z std_x rms_x
+95.19,rms_y std_y median_z std_z std_x rms_z
+96.15,rms_y std_y median_z std_z std_x median_y mean_x
+97.12,rms_y std_y median_z std_z std_x median_y mean_y
+95.19,rms_y std_y median_z std_z std_x median_y mean_z
+95.19,rms_y std_y median_z std_z std_x median_y median_x
+94.23,rms_y std_y median_z std_z std_x median_y rms_x
+95.19,rms_y std_y median_z std_z std_x median_y rms_z
+96.15,rms_y std_y median_z std_z std_x median_y mean_x
+97.12,rms_y std_y median_z std_z std_x median_y mean_y
+95.19,rms_y std_y median_z std_z std_x median_y mean_z
+95.19,rms_y std_y median_z std_z std_x median_y median_x
+94.23,rms_y std_y median_z std_z std_x median_y rms_x
+95.19,rms_y std_y median_z std_z std_x median_y rms_z
+92.31,rms_y std_y median_z std_z median_x mean_x
+93.27,rms_y std_y median_z std_z median_x std_x
+93.27,rms_y std_y median_z std_z median_x mean_y
+94.23,rms_y std_y median_z std_z median_x mean_z
+94.23,rms_y std_y median_z std_z median_x median_y
+94.23,rms_y std_y median_z std_z median_x rms_x
+94.23,rms_y std_y median_z std_z median_x rms_z
+95.19,rms_y std_y median_z rms_z mean_x
+94.23,rms_y std_y median_z rms_z std_x
+90.38,rms_y std_y median_z rms_z mean_y
+92.31,rms_y std_y median_z rms_z mean_z
+92.31,rms_y std_y median_z rms_z std_z
+93.27,rms_y std_y median_z rms_z median_x
+93.27,rms_y std_y median_z rms_z median_y
+92.31,rms_y std_y median_z rms_z rms_x
+91.35,rms_y std_y median_z rms_z mean_x std_x
+90.38,rms_y std_y median_z rms_z mean_x mean_y
+94.23,rms_y std_y median_z rms_z mean_x mean_z
+94.23,rms_y std_y median_z rms_z mean_x std_z
+92.31,rms_y std_y median_z rms_z mean_x median_x
+93.27,rms_y std_y median_z rms_z mean_x median_y
+93.27,rms_y std_y median_z rms_z mean_x rms_x
+91.35,rms_y std_y median_z rms_z mean_x std_x
+90.38,rms_y std_y median_z rms_z mean_x mean_y
+94.23,rms_y std_y median_z rms_z mean_x mean_z
+94.23,rms_y std_y median_z rms_z mean_x std_z
+92.31,rms_y std_y median_z rms_z mean_x median_x
+93.27,rms_y std_y median_z rms_z mean_x median_y
+93.27,rms_y std_y median_z rms_z mean_x rms_x

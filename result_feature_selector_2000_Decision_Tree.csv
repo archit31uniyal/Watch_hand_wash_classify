@@ -1,0 +1,126 @@
+accuracy,cols
+58.33,mean_x
+75.93,std_x
+63.89,mean_y
+72.22,std_y
+58.33,mean_z
+60.19,std_z
+61.11,median_x
+71.30,median_y
+72.22,median_z
+62.96,rms_x
+62.96,rms_y
+63.89,rms_z
+74.07,std_x mean_x
+74.07,std_x mean_y
+73.15,std_x std_y
+75.00,std_x mean_z
+69.44,std_x std_z
+75.00,std_x median_x
+75.93,std_x median_y
+86.11,std_x median_z
+70.37,std_x rms_x
+74.07,std_x rms_y
+73.15,std_x rms_z
+87.96,std_x median_z mean_x
+87.04,std_x median_z mean_y
+79.63,std_x median_z std_y
+84.26,std_x median_z mean_z
+80.56,std_x median_z std_z
+87.96,std_x median_z median_x
+85.19,std_x median_z median_y
+87.96,std_x median_z rms_x
+84.26,std_x median_z rms_y
+82.41,std_x median_z rms_z
+87.96,std_x median_z mean_x mean_y
+85.19,std_x median_z mean_x std_y
+86.11,std_x median_z mean_x mean_z
+87.96,std_x median_z mean_x std_z
+87.96,std_x median_z mean_x median_x
+87.96,std_x median_z mean_x median_y
+87.96,std_x median_z mean_x rms_x
+87.96,std_x median_z mean_x rms_y
+85.19,std_x median_z mean_x rms_z
+88.89,std_x median_z mean_x mean_y
+86.11,std_x median_z mean_x std_y
+87.04,std_x median_z mean_x mean_z
+88.89,std_x median_z mean_x std_z
+88.89,std_x median_z mean_x median_x
+87.04,std_x median_z mean_x median_y
+88.89,std_x median_z mean_x rms_x
+87.96,std_x median_z mean_x rms_y
+85.19,std_x median_z mean_x rms_z
+86.11,std_x median_z median_x mean_x
+85.19,std_x median_z median_x mean_y
+83.33,std_x median_z median_x std_y
+87.04,std_x median_z median_x mean_z
+84.26,std_x median_z median_x std_z
+86.11,std_x median_z median_x median_y
+90.74,std_x median_z median_x rms_x
+86.11,std_x median_z median_x rms_y
+87.96,std_x median_z median_x rms_z
+90.74,std_x median_z median_x rms_x mean_x
+86.11,std_x median_z median_x rms_x mean_y
+89.81,std_x median_z median_x rms_x std_y
+92.59,std_x median_z median_x rms_x mean_z
+85.19,std_x median_z median_x rms_x std_z
+88.89,std_x median_z median_x rms_x median_y
+89.81,std_x median_z median_x rms_x rms_y
+90.74,std_x median_z median_x rms_x rms_z
+88.89,std_x median_z median_x rms_x mean_z mean_x
+85.19,std_x median_z median_x rms_x mean_z mean_y
+87.96,std_x median_z median_x rms_x mean_z std_y
+88.89,std_x median_z median_x rms_x mean_z std_z
+91.67,std_x median_z median_x rms_x mean_z median_y
+87.04,std_x median_z median_x rms_x mean_z rms_y
+91.67,std_x median_z median_x rms_x mean_z rms_z
+92.59,std_x median_z median_x rms_x mean_z mean_x
+87.96,std_x median_z median_x rms_x mean_z mean_y
+88.89,std_x median_z median_x rms_x mean_z std_y
+87.04,std_x median_z median_x rms_x mean_z std_z
+89.81,std_x median_z median_x rms_x mean_z median_y
+87.04,std_x median_z median_x rms_x mean_z rms_y
+91.67,std_x median_z median_x rms_x mean_z rms_z
+89.81,std_x median_z median_x rms_x mean_x
+86.11,std_x median_z median_x rms_x mean_y
+88.89,std_x median_z median_x rms_x std_y
+90.74,std_x median_z median_x rms_x mean_z
+85.19,std_x median_z median_x rms_x std_z
+89.81,std_x median_z median_x rms_x median_y
+88.89,std_x median_z median_x rms_x rms_y
+88.89,std_x median_z median_x rms_x rms_z
+88.89,std_x median_z rms_x mean_x
+86.11,std_x median_z rms_x mean_y
+85.19,std_x median_z rms_x std_y
+87.96,std_x median_z rms_x mean_z
+84.26,std_x median_z rms_x std_z
+90.74,std_x median_z rms_x median_x
+89.81,std_x median_z rms_x median_y
+86.11,std_x median_z rms_x rms_y
+87.96,std_x median_z rms_x rms_z
+90.74,std_x median_z rms_x median_x mean_x
+87.04,std_x median_z rms_x median_x mean_y
+90.74,std_x median_z rms_x median_x std_y
+90.74,std_x median_z rms_x median_x mean_z
+85.19,std_x median_z rms_x median_x std_z
+88.89,std_x median_z rms_x median_x median_y
+89.81,std_x median_z rms_x median_x rms_y
+90.74,std_x median_z rms_x median_x rms_z
+90.74,std_x median_z rms_x median_x mean_x
+86.11,std_x median_z rms_x median_x mean_y
+90.74,std_x median_z rms_x median_x std_y
+90.74,std_x median_z rms_x median_x mean_z
+86.11,std_x median_z rms_x median_x std_z
+88.89,std_x median_z rms_x median_x median_y
+88.89,std_x median_z rms_x median_x rms_y
+90.74,std_x median_z rms_x median_x rms_z
+87.04,std_x median_z mean_x
+86.11,std_x median_z mean_y
+78.70,std_x median_z std_y
+84.26,std_x median_z mean_z
+80.56,std_x median_z std_z
+86.11,std_x median_z median_x
+85.19,std_x median_z median_y
+86.11,std_x median_z rms_x
+83.33,std_x median_z rms_y
+79.63,std_x median_z rms_z

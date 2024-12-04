@@ -1,0 +1,130 @@
+accuracy,cols
+68.00,mean_x
+76.00,std_x
+65.00,mean_y
+63.00,std_y
+59.00,mean_z
+68.00,std_z
+64.00,median_x
+63.00,median_y
+76.00,median_z
+72.00,rms_x
+65.00,rms_y
+63.00,rms_z
+82.00,std_x mean_x
+83.00,std_x mean_y
+76.00,std_x std_y
+79.00,std_x mean_z
+80.00,std_x std_z
+82.00,std_x median_x
+82.00,std_x median_y
+87.00,std_x median_z
+84.00,std_x rms_x
+84.00,std_x rms_y
+82.00,std_x rms_z
+91.00,std_x median_z mean_x
+91.00,std_x median_z mean_y
+85.00,std_x median_z std_y
+86.00,std_x median_z mean_z
+89.00,std_x median_z std_z
+91.00,std_x median_z median_x
+92.00,std_x median_z median_y
+94.00,std_x median_z rms_x
+88.00,std_x median_z rms_y
+90.00,std_x median_z rms_z
+92.00,std_x median_z rms_x mean_x
+94.00,std_x median_z rms_x mean_y
+94.00,std_x median_z rms_x std_y
+91.00,std_x median_z rms_x mean_z
+94.00,std_x median_z rms_x std_z
+95.00,std_x median_z rms_x median_x
+95.00,std_x median_z rms_x median_y
+94.00,std_x median_z rms_x rms_y
+94.00,std_x median_z rms_x rms_z
+87.00,median_z mean_x
+87.00,median_z std_x
+90.00,median_z mean_y
+82.00,median_z std_y
+82.00,median_z mean_z
+81.00,median_z std_z
+84.00,median_z median_x
+85.00,median_z median_y
+86.00,median_z rms_x
+86.00,median_z rms_y
+85.00,median_z rms_z
+89.00,median_z mean_y mean_x
+92.00,median_z mean_y std_x
+90.00,median_z mean_y std_y
+87.00,median_z mean_y mean_z
+90.00,median_z mean_y std_z
+88.00,median_z mean_y median_x
+91.00,median_z mean_y median_y
+89.00,median_z mean_y rms_x
+89.00,median_z mean_y rms_y
+88.00,median_z mean_y rms_z
+95.00,median_z mean_y std_x mean_x
+92.00,median_z mean_y std_x std_y
+90.00,median_z mean_y std_x mean_z
+95.00,median_z mean_y std_x std_z
+92.00,median_z mean_y std_x median_x
+93.00,median_z mean_y std_x median_y
+94.00,median_z mean_y std_x rms_x
+91.00,median_z mean_y std_x rms_y
+92.00,median_z mean_y std_x rms_z
+95.00,median_z mean_y std_x mean_x std_y
+93.00,median_z mean_y std_x mean_x mean_z
+94.00,median_z mean_y std_x mean_x std_z
+93.00,median_z mean_y std_x mean_x median_x
+95.00,median_z mean_y std_x mean_x median_y
+95.00,median_z mean_y std_x mean_x rms_x
+95.00,median_z mean_y std_x mean_x rms_y
+93.00,median_z mean_y std_x mean_x rms_z
+95.00,median_z mean_y std_x mean_x std_y
+93.00,median_z mean_y std_x mean_x mean_z
+94.00,median_z mean_y std_x mean_x std_z
+93.00,median_z mean_y std_x mean_x median_x
+95.00,median_z mean_y std_x mean_x median_y
+95.00,median_z mean_y std_x mean_x rms_x
+95.00,median_z mean_y std_x mean_x rms_y
+93.00,median_z mean_y std_x mean_x rms_z
+94.00,median_z mean_y std_x std_z mean_x
+96.00,median_z mean_y std_x std_z std_y
+93.00,median_z mean_y std_x std_z mean_z
+96.00,median_z mean_y std_x std_z median_x
+95.00,median_z mean_y std_x std_z median_y
+95.00,median_z mean_y std_x std_z rms_x
+94.00,median_z mean_y std_x std_z rms_y
+90.00,median_z mean_y std_x std_z rms_z
+95.00,median_z mean_y std_x mean_x
+92.00,median_z mean_y std_x std_y
+90.00,median_z mean_y std_x mean_z
+95.00,median_z mean_y std_x std_z
+92.00,median_z mean_y std_x median_x
+93.00,median_z mean_y std_x median_y
+94.00,median_z mean_y std_x rms_x
+91.00,median_z mean_y std_x rms_y
+92.00,median_z mean_y std_x rms_z
+95.00,median_z mean_y std_x mean_x std_y
+93.00,median_z mean_y std_x mean_x mean_z
+94.00,median_z mean_y std_x mean_x std_z
+93.00,median_z mean_y std_x mean_x median_x
+95.00,median_z mean_y std_x mean_x median_y
+95.00,median_z mean_y std_x mean_x rms_x
+95.00,median_z mean_y std_x mean_x rms_y
+93.00,median_z mean_y std_x mean_x rms_z
+95.00,median_z mean_y std_x mean_x std_y
+93.00,median_z mean_y std_x mean_x mean_z
+94.00,median_z mean_y std_x mean_x std_z
+93.00,median_z mean_y std_x mean_x median_x
+95.00,median_z mean_y std_x mean_x median_y
+95.00,median_z mean_y std_x mean_x rms_x
+95.00,median_z mean_y std_x mean_x rms_y
+93.00,median_z mean_y std_x mean_x rms_z
+94.00,median_z mean_y std_x std_z mean_x
+96.00,median_z mean_y std_x std_z std_y
+93.00,median_z mean_y std_x std_z mean_z
+96.00,median_z mean_y std_x std_z median_x
+95.00,median_z mean_y std_x std_z median_y
+95.00,median_z mean_y std_x std_z rms_x
+94.00,median_z mean_y std_x std_z rms_y
+90.00,median_z mean_y std_x std_z rms_z

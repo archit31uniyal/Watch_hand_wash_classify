@@ -1,0 +1,52 @@
+accuracy,cols
+63.00,mean_x
+71.00,std_x
+61.00,mean_y
+68.00,std_y
+61.00,mean_z
+69.00,std_z
+66.00,median_x
+67.00,median_y
+76.00,median_z
+68.00,rms_x
+64.00,rms_y
+67.00,rms_z
+89.00,median_z mean_x
+86.00,median_z std_x
+85.00,median_z mean_y
+77.00,median_z std_y
+74.00,median_z mean_z
+82.00,median_z std_z
+91.00,median_z median_x
+86.00,median_z median_y
+84.00,median_z rms_x
+90.00,median_z rms_y
+81.00,median_z rms_z
+89.00,median_z median_x mean_x
+91.00,median_z median_x std_x
+91.00,median_z median_x mean_y
+85.00,median_z median_x std_y
+85.00,median_z median_x mean_z
+87.00,median_z median_x std_z
+94.00,median_z median_x median_y
+90.00,median_z median_x rms_x
+91.00,median_z median_x rms_y
+86.00,median_z median_x rms_z
+90.00,median_z median_x median_y mean_x
+83.00,median_z median_x median_y std_x
+94.00,median_z median_x median_y mean_y
+87.00,median_z median_x median_y std_y
+85.00,median_z median_x median_y mean_z
+93.00,median_z median_x median_y std_z
+93.00,median_z median_x median_y rms_x
+93.00,median_z median_x median_y rms_y
+85.00,median_z median_x median_y rms_z
+90.00,median_z median_x median_y mean_x
+83.00,median_z median_x median_y std_x
+94.00,median_z median_x median_y mean_y
+87.00,median_z median_x median_y std_y
+94.00,median_z median_x median_y mean_z
+93.00,median_z median_x median_y std_z
+92.00,median_z median_x median_y rms_x
+94.00,median_z median_x median_y rms_y
+85.00,median_z median_x median_y rms_z

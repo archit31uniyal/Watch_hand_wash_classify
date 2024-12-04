@@ -1,0 +1,52 @@
+accuracy,cols
+65.45,mean_x
+70.00,std_x
+66.36,mean_y
+68.18,std_y
+60.91,mean_z
+67.27,std_z
+62.73,median_x
+59.09,median_y
+70.91,median_z
+56.36,rms_x
+61.82,rms_y
+63.64,rms_z
+77.27,median_z mean_x
+80.00,median_z std_x
+80.00,median_z mean_y
+76.36,median_z std_y
+73.64,median_z mean_z
+79.09,median_z std_z
+87.27,median_z median_x
+84.55,median_z median_y
+78.18,median_z rms_x
+85.45,median_z rms_y
+74.55,median_z rms_z
+85.45,median_z median_x mean_x
+83.64,median_z median_x std_x
+85.45,median_z median_x mean_y
+84.55,median_z median_x std_y
+81.82,median_z median_x mean_z
+85.45,median_z median_x std_z
+89.09,median_z median_x median_y
+86.36,median_z median_x rms_x
+83.64,median_z median_x rms_y
+86.36,median_z median_x rms_z
+85.45,median_z median_x median_y mean_x
+83.64,median_z median_x median_y std_x
+84.55,median_z median_x median_y mean_y
+85.45,median_z median_x median_y std_y
+86.36,median_z median_x median_y mean_z
+85.45,median_z median_x median_y std_z
+86.36,median_z median_x median_y rms_x
+88.18,median_z median_x median_y rms_y
+87.27,median_z median_x median_y rms_z
+82.73,median_z median_x median_y mean_x
+84.55,median_z median_x median_y std_x
+83.64,median_z median_x median_y mean_y
+85.45,median_z median_x median_y std_y
+84.55,median_z median_x median_y mean_z
+88.18,median_z median_x median_y std_z
+87.27,median_z median_x median_y rms_x
+86.36,median_z median_x median_y rms_y
+84.55,median_z median_x median_y rms_z
